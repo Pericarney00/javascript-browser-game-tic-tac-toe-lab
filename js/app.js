@@ -30,10 +30,10 @@ const messageEl = document.querySelector("#message")
 console.log(messageEl)
 
 /*---------------------------- Variables (state) ----------------------------*/
- let board
- let turn
- let winner
- let tie
+ let board = ["","","","","","","","",""]
+ let turn = "X"
+ let winner = false
+ let tie = false
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -41,9 +41,37 @@ console.log(messageEl)
 
 
 /*-------------------------------- Functions --------------------------------*/
+function render(){
+    updateBoard();
+    updateMessage();
+}
+function init () {
+    console.log(" game start")
+} render()
+function handleClick (){}
+function updateBoard(){
+    board.forEach((boardIdx, idx) => {
+        if (boardIdx === "X"){
+            squareEls[idx].innerText = "X"
+        } else if (boardIdx === "O"){
+            squareEls[idx].innerText = "O";
+        } else {
+            squareEls[idx].innerText = ""
+        } 
+ console.log(squareEls[idx])
+    })
+}
 
-// function (handleClick){}
-
+function updateMessage (){
+    if (winner === false && tie === false){
+       console.log("The next player is " + turn)
+    } else if ( winner === false & tie === true){
+        console.log("You tied try again")
+    } else {
+        console.log("You win!")
+    }
+}
+render()
 /*----------------------------- Event Listeners -----------------------------*/
 
 
