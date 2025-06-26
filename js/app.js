@@ -38,16 +38,19 @@ const winningCombos = [
     [1,4,7],
     [2,5,8]   
     ]
+const squareIndex = [0,1,2,3,4,5,6,7,8]
 /*---------------------------- Variables (state) ----------------------------*/
- let board = ["","","","","","","","",""]
- let turn = "X"
- let winner = false
- let tie = false
+let board = ["","","","","","","","",""]
+let turn = "X"
+let winner = false
+let tie = false
 
 
 /*------------------------ Cached Element References ------------------------*/
 
-
+squareEls.forEach((square,id)=>{
+    square.addEventListener("click", (e)=>handleClick(e,id))
+})
 
 /*-------------------------------- Functions --------------------------------*/
 function render(){
@@ -56,8 +59,21 @@ function render(){
 }
 function init () {
     console.log(" game start")
-} render()
-function handleClick (){}
+    render()
+} 
+
+const placePiece = (index) => {
+board[index] = turn
+} 
+function handleClick (event,id){
+    console.log(event.target)
+    console.log(id)
+    if(board[id].length === 0 && winner === false){
+        placePiece(id)
+    }
+}
+
+
 function updateBoard(){
     board.forEach((boardIdx, idx) => {
         if (boardIdx === "X"){
@@ -67,13 +83,12 @@ function updateBoard(){
         } else {
             squareEls[idx].innerText = ""
         } 
- console.log(squareEls[idx])
     })
 }
 
 function updateMessage (){
     if (winner === false && tie === false){
-       console.log("The next player is " + turn)
+    console.log("The next player is " + turn)
     } else if ( winner === false & tie === true){
         console.log("You tied try again")
     } else {
