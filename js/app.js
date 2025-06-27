@@ -100,11 +100,11 @@ function updateBoard(){
 
 function updateMessage (){
     if (winner === false && tie === false){
-    console.log("The next player is " + turn)
+    messageEl.textContent = ("The next player is " + turn)
     } else if ( winner === false && tie === true){
-        console.log("You tied try again")
+    messageEl.textContent = ("You tied try again")
     } else {
-        console.log("You win!")
+    messageEl.textContent = ("You win!")
     }
 }
 render()
@@ -121,53 +121,12 @@ board.forEach((a,id) => {
 })
 winningCombos.forEach((banana)=>{
     if (xIds.includes(banana[0]) && xIds.includes(banana[1]) &&  xIds.includes(banana[2])){
-    console.log("X wins")
+    return winner === true
     }
     else if (oIds.includes(banana[0]) && oIds.includes(banana[1]) &&  oIds.includes(banana[2])){
-    console.log("O wins")
+    return winner === true
     } 
-    if (xIds.includes(banana[3]) && xIds.includes(banana[4]) &&  xIds.includes(banana[5])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[3]) && oIds.includes(banana[4]) &&  oIds.includes(banana[5])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[6]) && xIds.includes(banana[7]) &&  xIds.includes(banana[8])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[6]) && oIds.includes(banana[7]) &&  oIds.includes(banana[8])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[0]) && xIds.includes(banana[4]) &&  xIds.includes(banana[8])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[0]) && oIds.includes(banana[4]) &&  oIds.includes(banana[8])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[2]) && xIds.includes(banana[4]) &&  xIds.includes(banana[6])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[2]) && oIds.includes(banana[4]) &&  oIds.includes(banana[6])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[0]) && xIds.includes(banana[3]) &&  xIds.includes(banana[6])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[0]) && oIds.includes(banana[3]) &&  oIds.includes(banana[6])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[1]) && xIds.includes(banana[4]) &&  xIds.includes(banana[7])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[1]) && oIds.includes(banana[4]) &&  oIds.includes(banana[7])){
-    console.log("O wins")
-    } 
-    if (xIds.includes(banana[2]) && xIds.includes(banana[5]) &&  xIds.includes(banana[8])){
-    console.log("X wins")
-    }
-    else if (oIds.includes(banana[2]) && oIds.includes(banana[5]) &&  oIds.includes(banana[8])){
-    console.log("O wins")
-    } 
+    
 
 })
 }
