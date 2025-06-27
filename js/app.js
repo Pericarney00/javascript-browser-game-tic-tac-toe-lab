@@ -76,6 +76,7 @@ function handleClick (event,id){
         updateBoard()
         checkForWinner()
         checkForTie()
+        console.log(tie)
         switchPlayerTurn()
         console.log(board)
         render()
@@ -124,15 +125,56 @@ winningCombos.forEach((banana)=>{
     }
     else if (oIds.includes(banana[0]) && oIds.includes(banana[1]) &&  oIds.includes(banana[2])){
     console.log("O wins")
-    } //create tie logic
+    } 
+    if (xIds.includes(banana[3]) && xIds.includes(banana[4]) &&  xIds.includes(banana[5])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[3]) && oIds.includes(banana[4]) &&  oIds.includes(banana[5])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[6]) && xIds.includes(banana[7]) &&  xIds.includes(banana[8])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[6]) && oIds.includes(banana[7]) &&  oIds.includes(banana[8])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[0]) && xIds.includes(banana[4]) &&  xIds.includes(banana[8])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[0]) && oIds.includes(banana[4]) &&  oIds.includes(banana[8])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[2]) && xIds.includes(banana[4]) &&  xIds.includes(banana[6])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[2]) && oIds.includes(banana[4]) &&  oIds.includes(banana[6])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[0]) && xIds.includes(banana[3]) &&  xIds.includes(banana[6])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[0]) && oIds.includes(banana[3]) &&  oIds.includes(banana[6])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[1]) && xIds.includes(banana[4]) &&  xIds.includes(banana[7])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[1]) && oIds.includes(banana[4]) &&  oIds.includes(banana[7])){
+    console.log("O wins")
+    } 
+    if (xIds.includes(banana[2]) && xIds.includes(banana[5]) &&  xIds.includes(banana[8])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[2]) && oIds.includes(banana[5]) &&  oIds.includes(banana[8])){
+    console.log("O wins")
+    } 
+
 })
 }
+
 const checkForTie = () => {
-    board.find((boardIdx) => {
-    if( boardIdx === ""){
-    return tie = false
-    } return tie = true
-    
+    tie = board.every((boardIdx) => {
+        return boardIdx !== "" 
     })
 }
 
