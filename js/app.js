@@ -42,7 +42,7 @@ const winningCombos = [
 
 const squareIndex = [0,1,2,3,4,5,6,7,8]
 /*---------------------------- Variables (state) ----------------------------*/
-let board = ["X","X","X","","X","X","X","X","X"]
+let board = ["","","","","","","","",""]
 let turn = "X"
 let winner = false
 let tie = false
@@ -55,15 +55,16 @@ squareEls.forEach((square,id)=>{
 })
 
 /*-------------------------------- Functions --------------------------------*/
+
+function init () {
+    console.log(" game start")
+} 
+init()
+render()
 function render(){
     updateBoard();
     updateMessage();
 }
-function init () {
-    console.log(" game start")
-    render()
-} 
-
 const placePiece = (index) => {
 board[index] = turn
 } 
@@ -72,15 +73,21 @@ function handleClick (event,id){
     console.log(id)
     if(board[id].length === 0 && winner === false){
         placePiece(id)
+        updateBoard()
         checkForWinner()
         checkForTie()
+        switchPlayerTurn()
+        console.log(board)
+        render()
     }
 }
 
 
 function updateBoard(){
     board.forEach((boardIdx, idx) => {
+        console.log(boardIdx)
         if (boardIdx === "X"){
+            console.log(boardIdx)
             squareEls[idx].innerText = "X"
         } else if (boardIdx === "O"){
             squareEls[idx].innerText = "O";
@@ -93,7 +100,7 @@ function updateBoard(){
 function updateMessage (){
     if (winner === false && tie === false){
     console.log("The next player is " + turn)
-    } else if ( winner === false & tie === true){
+    } else if ( winner === false && tie === true){
         console.log("You tied try again")
     } else {
         console.log("You win!")
@@ -123,14 +130,21 @@ winningCombos.forEach((banana)=>{
 const checkForTie = () => {
     board.find((boardIdx) => {
     if( boardIdx === ""){
-    console.log (" This board is not full")  
+    return tie = false
     } return tie = true
     
     })
 }
 
-
-
+switchPlayerTurn = () => {
+    if (winner === false){
+        console.log(turn)
+        if (turn === "X"){
+        turn = "O"
+        }else if (turn === "O"){
+            turn = "X"
+    } 
+}}
 
 /*----------------------------- Event Listeners -----------------------------*/
 
