@@ -41,6 +41,8 @@ const winningCombos = [
 
 
 const squareIndex = [0,1,2,3,4,5,6,7,8]
+
+
 /*---------------------------- Variables (state) ----------------------------*/
 let board = ["","","","","","","","",""]
 let turn = "X"
@@ -54,10 +56,16 @@ squareEls.forEach((square,id)=>{
     square.addEventListener("click", (e)=>handleClick(e,id))
 })
 
+const resetBtnEl = document.querySelector("#reset")
+resetBtnEl.addEventListener("click", init)
 /*-------------------------------- Functions --------------------------------*/
 
 function init () {
     console.log(" game start")
+    board = ["","","","","","","","",""]
+    turn = "X"
+    winner = false
+    tie = false
     render()
 } 
 
@@ -157,5 +165,5 @@ switchPlayerTurn = () => {
 /*----------------------------- Event Listeners -----------------------------*/
 
 
-init()
+// init()
 
