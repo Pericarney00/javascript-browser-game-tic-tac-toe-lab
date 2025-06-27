@@ -38,6 +38,8 @@ const winningCombos = [
     [1,4,7],
     [2,5,8]   
     ]
+
+
 const squareIndex = [0,1,2,3,4,5,6,7,8]
 /*---------------------------- Variables (state) ----------------------------*/
 let board = ["","","","","","","","",""]
@@ -70,6 +72,7 @@ function handleClick (event,id){
     console.log(id)
     if(board[id].length === 0 && winner === false){
         placePiece(id)
+        checkForWinner()
     }
 }
 
@@ -96,6 +99,26 @@ function updateMessage (){
     }
 }
 render()
+
+const checkForWinner = () => {
+const xIds = []
+const oIds = []
+board.forEach((a,id) => {
+    if (a === "X"){
+        xIds.push(id)
+    } else if (a === "O"){
+        oIds.push(id)
+    }
+})
+winningCombos.forEach((banana)=>{
+    if (xIds.includes(banana[0]) && xIds.includes(banana[1]) &&  xIds.includes(banana[2])){
+    console.log("X wins")
+    }
+    else if (oIds.includes(banana[0]) && oIds.includes(banana[1]) &&  oIds.includes(banana[2])){
+    console.log("O wins")
+    }//create tie logic
+})
+}
 /*----------------------------- Event Listeners -----------------------------*/
 
 
