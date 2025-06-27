@@ -27,7 +27,7 @@
 /*-------------------------------- Constants --------------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
-console.log(messageEl)
+// console.log(messageEl)
 const winningCombos = [
     [0,1,2], 
     [3,4,5], 
@@ -58,39 +58,40 @@ squareEls.forEach((square,id)=>{
 
 function init () {
     console.log(" game start")
+    render()
 } 
-init()
-render()
+
 function render(){
     updateBoard();
     updateMessage();
 }
 const placePiece = (index) => {
-board[index] = turn
+    board[index] = turn
 } 
 function handleClick (event,id){
-    console.log(event.target)
-    console.log(id)
+    // console.log(event.target)
+    // console.log(id)
     if(board[id].length === 0 && winner === false){
         placePiece(id)
         updateBoard()
         checkForWinner()
         checkForTie()
         console.log(tie)
+        updateMessage()
         switchPlayerTurn()
         console.log(board)
-        render()
+        // render()
     }
 }
 
 
 function updateBoard(){
-    board.forEach((boardIdx, idx) => {
-        console.log(boardIdx)
-        if (boardIdx === "X"){
-            console.log(boardIdx)
+    board.forEach((boardItem, idx) => {
+        // console.log(boardItem)
+        if (boardItem === "X"){
+            // console.log(boardIdx)
             squareEls[idx].innerText = "X"
-        } else if (boardIdx === "O"){
+        } else if (boardItem === "O"){
             squareEls[idx].innerText = "O";
         } else {
             squareEls[idx].innerText = ""
@@ -100,35 +101,41 @@ function updateBoard(){
 
 function updateMessage (){
     if (winner === false && tie === false){
-    messageEl.textContent = ("The next player is " + turn)
+        messageEl.textContent = ("The next player is " + turn)
     } else if ( winner === false && tie === true){
-    messageEl.textContent = ("You tied try again")
+        messageEl.textContent = ("You tied try again")
     } else {
-    messageEl.textContent = ("You win!")
+        messageEl.textContent = (` ${turn} wins!`)
     }
 }
 render()
 
 const checkForWinner = () => {
-const xIds = []
-const oIds = []
-board.forEach((a,id) => {
-    if (a === "X"){
-        xIds.push(id)
-    } else if (a === "O"){
-        oIds.push(id)
-    }
-})
-winningCombos.forEach((banana)=>{
-    if (xIds.includes(banana[0]) && xIds.includes(banana[1]) &&  xIds.includes(banana[2])){
-    return winner === true
-    }
-    else if (oIds.includes(banana[0]) && oIds.includes(banana[1]) &&  oIds.includes(banana[2])){
-    return winner === true
-    } 
-    
-
-})
+    const xIds = []
+    const oIds = []
+    board.forEach((a,id) => {
+        if (a === "X"){
+            xIds.push(id)
+        } else if (a === "O"){
+            oIds.push(id)
+        }
+    })
+    winningCombos.forEach((banana)=> {
+        if (
+            xIds.includes(banana[0]) &&
+            xIds.includes(banana[1]) &&  
+            xIds.includes(banana[2])
+        ){
+            return winner = true
+        }
+        else if (
+            oIds.includes(banana[0]) && 
+            oIds.includes(banana[1]) &&  
+            oIds.includes(banana[2])
+        ){
+            return winner = true
+        } 
+    })
 }
 
 const checkForTie = () => {
@@ -150,4 +157,5 @@ switchPlayerTurn = () => {
 /*----------------------------- Event Listeners -----------------------------*/
 
 
+init()
 
